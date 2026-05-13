@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Voddy Dev Course</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">V</div>
+          <div>
+            <div class="eyebrow">Beginner Course</div>
+            <h1>Voddy Dev Course</h1>
+          </div>
+        </div>
+        <div class="progress-card">
+          <div class="progress-top">
+            <span>Course progress</span>
+            <strong id="progressPercent">0%</strong>
+          </div>
+          <div class="progress-bar"><span id="progressFill"></span></div>
+          <button id="resetProgress" class="ghost-button" type="button">Reset progress</button>
+        </div>
+        <nav id="moduleNav" class="module-nav" aria-label="Course modules"></nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="eyebrow">Project-based full-stack learning</div>
+            <h2>Building and Understanding the VOD Review Bot</h2>
+          </div>
+          <div class="top-actions">
+          <button id="openOverview" class="secondary-button" type="button">Overview</button>
+          <button id="openSettings" class="secondary-button" type="button">Course Settings</button>
+          <button id="markLessonDone" class="primary-button" type="button">Mark Lesson Done</button>
+        </div>
+      </header>
+
+        <section id="overview" class="overview">
+          <div class="hero">
+            <div>
+              <div class="eyebrow">From Unity/C# to Discord, Next.js, Prisma, OAuth, and deployment</div>
+              <h3>Learn this exact project, one system at a time.</h3>
+              <p>
+                This course uses the VOD Review Discord bot and web app as the textbook. You will move from the big picture to real code paths, then finish by adding a small feature across the database, server actions, UI, and tests.
+              </p>
+            </div>
+            <div class="hero-panel">
+              <div class="metric"><span>12</span><small>Modules</small></div>
+              <div class="metric"><span>53</span><small>Lessons</small></div>
+              <div class="metric"><span>12</span><small>Quizzes</small></div>
+              <div class="metric"><span>1</span><small>Capstone</small></div>
+            </div>
+          </div>
+          <div class="overview-grid">
+            <article>
+              <h4>How to Use This</h4>
+              <p>Read each lesson, open the referenced project files, answer the review questions, then do the practical exercise. Treat quizzes as checkpoints, not exams.</p>
+            </article>
+            <article>
+              <h4>Your Starting Point</h4>
+              <p>You know C# and Unity, so the course compares React components to prefabs/scripts, Prisma models to C# classes, and server actions to validated gameplay commands.</p>
+            </article>
+            <article>
+              <h4>Project Source</h4>
+              <p>The course references your local VOD Review Tool folder. Set that path in Course Settings after opening the site.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="settingsView" class="settings-view" hidden>
+          <article class="settings-card">
+            <div class="lesson-header">
+              <div class="eyebrow">Course Settings</div>
+              <h3>Project Path</h3>
+              <p>
+                Set the local folder where your VOD Review Tool lives. The course uses this only to display file references. It is saved in this browser with localStorage.
+              </p>
+            </div>
+            <form id="pathForm" class="path-form">
+              <label for="projectPath">VOD Review Tool folder</label>
+              <input id="projectPath" name="projectPath" placeholder="C:\Users\You\...\VOD Review Bot" />
+              <div class="path-actions">
+                <button class="primary-button" type="submit">Save Path</button>
+                <button id="resetPath" class="secondary-button" type="button">Use Default Placeholder</button>
+              </div>
+            </form>
+            <div class="section">
+              <h4>Current Path</h4>
+              <p id="currentProjectPath"></p>
+            </div>
+          </article>
+        </section>
+
+        <section id="lessonView" class="lesson-view" hidden>
+          <div class="lesson-layout">
+            <aside class="lesson-list">
+              <div class="list-title">Lessons</div>
+              <div id="lessonNav"></div>
+            </aside>
+            <article class="lesson-card">
+              <div id="lessonContent"></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="quizDialog" class="quiz-dialog">
+      <form method="dialog">
+        <div class="dialog-head">
+          <h3 id="quizTitle">Module Quiz</h3>
+          <button class="icon-button" value="close" aria-label="Close quiz">x</button>
+        </div>
+        <div id="quizBody" class="quiz-body"></div>
+        <div class="dialog-actions">
+          <button id="gradeQuiz" class="primary-button" type="button">Grade Quiz</button>
+          <button class="secondary-button" value="close">Close</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="./course-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

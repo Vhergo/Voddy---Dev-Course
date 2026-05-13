@@ -1,0 +1,414 @@
+:root {
+  color-scheme: dark;
+  --bg: #0c1118;
+  --panel: #121a24;
+  --panel-2: #172231;
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #f7f3df;
+  --muted: rgba(247, 243, 223, 0.68);
+  --faint: rgba(247, 243, 223, 0.42);
+  --gold: #f7c948;
+  --cyan: #67e8f9;
+  --red: #fb7185;
+  --green: #34d399;
+  --shadow: 0 18px 55px rgba(0, 0, 0, 0.32);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(247, 201, 72, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(103, 232, 249, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 18% 12%, rgba(247, 201, 72, 0.13), transparent 28rem),
+    radial-gradient(circle at 82% 20%, rgba(103, 232, 249, 0.12), transparent 30rem),
+    var(--bg);
+  background-size: 36px 36px, 36px 36px, auto, auto, auto;
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0;
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+code {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.26);
+  padding: 0.12rem 0.32rem;
+  color: #fff6bd;
+  overflow-wrap: anywhere;
+}
+pre {
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  line-height: 1.55;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid var(--line);
+  background: rgba(10, 15, 22, 0.92);
+  padding: 1.1rem;
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+}
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(247, 201, 72, 0.36);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(247, 201, 72, 0.28), rgba(103, 232, 249, 0.13));
+  color: var(--gold);
+  font-size: 1.6rem;
+  font-weight: 950;
+}
+.brand h1, .topbar h2, .hero h3 {
+  margin: 0;
+  line-height: 1.02;
+}
+.brand h1 { font-size: 1.08rem; }
+.eyebrow {
+  color: var(--cyan);
+  font-size: 0.72rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.progress-card {
+  margin: 1rem 0;
+  border: 1px solid rgba(247, 201, 72, 0.18);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(247, 201, 72, 0.1), rgba(103, 232, 249, 0.05));
+  padding: 0.8rem;
+}
+.progress-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+.progress-bar {
+  height: 8px;
+  margin: 0.75rem 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.progress-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--cyan));
+  transition: width 180ms ease;
+}
+
+.module-nav {
+  display: grid;
+  gap: 0.45rem;
+}
+.module-button, .lesson-button {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--muted);
+  padding: 0.75rem;
+  text-align: left;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+.module-button:hover, .lesson-button:hover,
+.module-button.active, .lesson-button.active {
+  border-color: rgba(247, 201, 72, 0.42);
+  background: rgba(247, 201, 72, 0.1);
+  color: var(--text);
+}
+.module-button strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+.module-button span {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+}
+
+.main {
+  min-width: 0;
+  padding: 1rem;
+}
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(14, 21, 30, 0.9);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+.topbar h2 { margin-top: 0.2rem; font-size: clamp(1.25rem, 2.5vw, 2rem); }
+.top-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.primary-button, .secondary-button, .ghost-button, .icon-button {
+  min-height: 40px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  padding: 0 0.9rem;
+  font-weight: 850;
+}
+.primary-button { background: var(--gold); color: #10131a; }
+.secondary-button { border-color: var(--line); background: rgba(255, 255, 255, 0.08); color: var(--text); }
+.ghost-button {
+  width: 100%;
+  min-height: 34px;
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--muted);
+}
+.icon-button {
+  min-width: 40px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.overview, .lesson-view, .settings-view { margin-top: 1rem; }
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 1rem;
+  border: 1px solid rgba(247, 201, 72, 0.18);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(247, 201, 72, 0.11), rgba(23, 34, 49, 0.74), rgba(103, 232, 249, 0.08));
+  padding: clamp(1.2rem, 4vw, 2.2rem);
+  box-shadow: var(--shadow);
+}
+.hero h3 { margin-top: 0.35rem; max-width: 850px; font-size: clamp(2rem, 5vw, 4.9rem); }
+.hero p { max-width: 770px; color: var(--muted); font-size: 1.08rem; line-height: 1.75; }
+.hero-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  align-content: center;
+}
+.metric {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.22);
+  padding: 1rem;
+}
+.metric span { display: block; color: var(--gold); font-size: 2.1rem; font-weight: 950; }
+.metric small { color: var(--muted); font-weight: 750; }
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.overview-grid article, .lesson-card, .lesson-list, .settings-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(18, 26, 36, 0.86);
+  box-shadow: var(--shadow);
+}
+.settings-card { padding: clamp(1rem, 2.5vw, 1.5rem); }
+.path-form {
+  display: grid;
+  gap: 0.75rem;
+}
+.path-form label {
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.path-form input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--text);
+  padding: 0 0.8rem;
+}
+.path-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+.overview-grid article { padding: 1rem; }
+.overview-grid h4 { margin: 0 0 0.55rem; color: var(--gold); }
+.overview-grid p { margin: 0; color: var(--muted); line-height: 1.65; }
+
+.lesson-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 1rem;
+}
+.lesson-list {
+  position: sticky;
+  top: 112px;
+  max-height: calc(100vh - 128px);
+  overflow: auto;
+  padding: 0.75rem;
+}
+.list-title {
+  padding: 0.4rem 0.5rem 0.7rem;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.lesson-card { padding: clamp(1rem, 2.5vw, 1.5rem); }
+.lesson-header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+.lesson-header h3 {
+  margin: 0.2rem 0 0.65rem;
+  font-size: clamp(1.7rem, 4vw, 3.2rem);
+  line-height: 1.06;
+}
+.lesson-header p { margin: 0; color: var(--muted); line-height: 1.7; }
+.section {
+  margin: 1rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.14);
+  padding: 1rem;
+}
+.section h4 { margin: 0 0 0.7rem; color: var(--cyan); }
+.section p, .section li { color: var(--muted); line-height: 1.72; }
+.section ul, .section ol { padding-left: 1.25rem; }
+.callout {
+  border-left: 4px solid var(--gold);
+  background: rgba(247, 201, 72, 0.09);
+  padding: 0.75rem 0.9rem;
+}
+.file-list {
+  display: grid;
+  gap: 0.45rem;
+}
+.file-list a {
+  color: #fff6bd;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.file-list a:hover { text-decoration: underline; }
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+.task {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+  padding: 0.85rem;
+}
+.task strong { color: var(--text); }
+.task p { margin-bottom: 0; }
+.lesson-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.quiz-dialog {
+  width: min(780px, calc(100vw - 2rem));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+.quiz-dialog::backdrop { background: rgba(0, 0, 0, 0.72); }
+.dialog-head, .dialog-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.8rem;
+}
+.dialog-actions {
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 0.8rem;
+  padding-bottom: 0;
+}
+.quiz-question {
+  margin: 1rem 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.quiz-question h4 { margin: 0 0 0.8rem; }
+.quiz-option {
+  display: block;
+  margin: 0.5rem 0;
+  color: var(--muted);
+}
+.quiz-result {
+  border-radius: 8px;
+  padding: 0.8rem;
+  background: rgba(52, 211, 153, 0.12);
+  color: #c8ffdf;
+  font-weight: 800;
+}
+
+@media (max-width: 1050px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .sidebar {
+    position: relative;
+    height: auto;
+    max-height: none;
+  }
+  .module-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero, .lesson-layout { grid-template-columns: 1fr; }
+  .lesson-list { position: relative; top: 0; max-height: none; }
+}
+
+@media (max-width: 720px) {
+  .main, .sidebar { padding: 0.75rem; }
+  .topbar { align-items: flex-start; flex-direction: column; }
+  .top-actions, .top-actions button { width: 100%; }
+  .module-nav, .overview-grid, .hero-panel, .task-grid { grid-template-columns: 1fr; }
+}
